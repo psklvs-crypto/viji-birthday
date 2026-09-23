@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Viji ♛</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    background:#020202;
+    color:#fff;
+    font-family:Georgia,serif;
+}
+
+/* GOLD */
+
+:root{
+    --gold:#d4af37;
+    --lightgold:#ffe9a6;
+}
+
+/* BOOK */
+
+.book{
+    width:100vw;
+    height:100vh;
+    position:relative;
+    perspective:1800px;
+    background:
+        radial-gradient(circle at center,
+        rgba(212,175,55,.12),
+        transparent 40%),
+        #020202;
+}
+
+/* COVER */
+
+.cover{
+    position:absolute;
+    inset:0;
+    z-index:20;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #050505,
+            #171205,
+            #030303
+        );
+
+    border:8px solid #111;
+
+    box-shadow:
+        inset 0 0 0 2px var(--gold),
+        inset 0 0 80px rgba(212,175,55,.18),
+        0 0 80px rgba(212,175,55,.15);
+
+    transform-origin:left center;
+
+    transition:
+        transform 1.8s cubic-bezier(.7,0,.2,1),
+        opacity 1s;
+}
+
+/* GOLD FRAME */
+
+.cover:before{
+    content:"";
+    position:absolute;
+    inset:25px;
+
+    border:1px solid var(--gold);
+
+    box-shadow:
+        inset 0 0 25px rgba(212,175,55,.15);
+}
+
+.cover.open{
+    transform:rotateY(-115deg);
+    opacity:0;
+    pointer-events:none;
+}
+
+/* CROWN */
+
+.crown{
+    font-size:65px;
+    color:var(--gold);
+
+    text-shadow:
+        0 0 15px var(--gold),
+        0 0 40px rgba(212,175,55,.5);
+
+    animation:crownFloat 3s ease-in-out infinite;
+}
+
+@keyframes crownFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+/* SMALL TEXT */
+
+.for{
+    margin-top:25px;
+
+    font-size:11px;
+    letter-spacing:7px;
+
+    color:#aaa;
+}
+
+/* VIJI */
+
+.viji{
+    margin-top:20px;
+
+    font-family:"Brush Script MT",
+                 "Segoe Script",
+                 cursive;
+
+    font-size:
+        clamp(80px,18vw,180px);
+
+    color:var(--lightgold);
+
+    text-shadow:
+        0 0 15px rgba(212,175,55,.3),
+        0 0 50px rgba(212,175,55,.15);
+}
+
+/* DATE */
+
+.date{
+    margin-top:10px;
+
+    font-size:12px;
+
+    letter-spacing:6px;
+
+    color:#888;
+}
+
+/* GOLD LINE */
+
+.line{
+    width:130px;
+    height:1px;
+
+    margin:28px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold),
+            transparent
+        );
+}
+
+/* BUTTON */
+
+.openButton{
+
+    padding:16px 34px;
+
+    border:1px solid var(--gold);
+
+    background:
+        linear-gradient(
+            145deg,
+            #211908,
+            #050505
+        );
+
+    color:var(--lightgold);
+
+    letter-spacing:3px;
+
+    font-size:11px;
+
+    cursor:pointer;
+
+    border-radius:30px;
+
+    transition:.4s;
+
+    box-shadow:
+        0 0 20px
+        rgba(212,175,55,.1);
+}
+
+.openButton:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.03);
+
+    box-shadow:
+        0 0 35px
+        rgba(212,175,55,.35);
+}
+
+/* SPARKLES */
+
+.sparkle{
+
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:var(--lightgold);
+
+    box-shadow:
+        0 0 10px var(--gold);
+
+    animation:sparkleMove
+        linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes sparkleMove{
+
+    from{
+        transform:
+            translateY(105vh)
+            scale(.3);
+
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    80%{
+        opacity:1;
+    }
+
+    to{
+        transform:
+            translateY(-10vh)
+            scale(1);
+
+        opacity:0;
+    }
+}
+
+/* NEXT PAGE */
+
+.page{
+    position:absolute;
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:30px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(212,175,55,.08),
+            transparent 45%
+        ),
+        #030303;
+}
+
+.page.active{
+    display:flex;
+}
+
+.pageContent{
+    max-width:800px;
+}
+
+.pageTitle{
+
+    font-family:Georgia,serif;
+
+    font-size:
+        clamp(30px,6vw,65px);
+
+    color:var(--lightgold);
+
+    letter-spacing:3px;
+}
+
+.pageText{
+
+    margin-top:25px;
+
+    color:#999;
+
+    line-height:1.9;
+
+    font-size:14px;
+}
+
+/* NEXT */
+
+.next{
+
+    margin-top:35px;
+
+    padding:14px 28px;
+
+    border:1px solid #765c1d;
+
+    background:#070707;
+
+    color:var(--lightgold);
+
+    border-radius:25px;
+
+    cursor:pointer;
+
+    letter-spacing:2px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="book">
+
+    <!-- SPARKLES -->
+
+    <div id="sparkles"></div>
+
+
+    <!-- COVER -->
+
+    <div class="cover" id="cover">
+
+        <div class="crown">
+            ♛
+        </div>
+
+        <div class="for">
+            A LITTLE STORY MADE FOR
+        </div>
+
+        <div class="viji">
+            Viji
+        </div>
+
+        <div class="date">
+            25 · 09 · 2013
+        </div>
+
+        <div class="line"></div>
+
+        <button
+            class="openButton"
+            onclick="openBook()">
+
+            ✦ OPEN THE BOOK ✦
+
+        </button>
+
+    </div>
+
+
+    <!-- PAGE 1 -->
+
+    <div
+        class="page"
+        id="page1">
+
+        <div class="pageContent">
+
+            <div class="crown">
+                ♛
+            </div>
+
+            <h1 class="pageTitle">
+                Welcome, Viji
+            </h1>
+
+            <div class="line"></div>
+
+            <p class="pageText">
+
+                Tonight, this isn't just a website.
+
+                <br><br>
+
+                It's a tiny birthday world,
+                made from memories,
+                surprises, laughter
+                and a little bit of magic.
+
+                <br><br>
+
+                And this book has
+                many secrets hidden inside...
+
+            </p>
+
+            <button
+                class="next"
+                onclick="nextPage()">
+
+                TURN THE PAGE →
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* SPARKLES */
+
+const sparkleBox =
+    document.getElementById("sparkles");
+
+for(let i=0;i<70;i++){
+
+    const s =
+        document.createElement("div");
+
+    s.className="sparkle";
+
+    s.style.left =
+        Math.random()*100+"%";
+
+    s.style.animationDuration =
+        (5+Math.random()*9)+"s";
+
+    s.style.animationDelay =
+        (-Math.random()*12)+"s";
+
+    const size =
+        1+Math.random()*3;
+
+    s.style.width=size+"px";
+    s.style.height=size+"px";
+
+    sparkleBox.appendChild(s);
+}
+
+
+/* OPEN BOOK */
+
+function openBook(){
+
+    document
+        .getElementById("cover")
+        .classList.add("open");
+
+    setTimeout(function(){
+
+        document
+            .getElementById("page1")
+            .classList.add("active");
+
+    },900);
+
+}
+
+
+/* PAGE BUTTON */
+
+function nextPage(){
+
+    alert(
+        "✨ More surprises are waiting... ✨"
+    );
+
+}
+
+</script>
+
+</body>
+</html>
